@@ -1,7 +1,8 @@
 <template>
   <section>
     <div class="flex items-center mb-4">
-      <img :src="`./src/components/img/${icon}`" />
+      <img :src="imgSrc(icon)" />
+      <!-- <img :src="`./src/components/img/${icon}`" /> -->
       <h2 class="text-xl font-black ml-2">{{ title }}</h2>
       <slot name="subTitle"></slot>
     </div>
@@ -61,4 +62,10 @@ defineProps({
     default: "",
   },
 });
+
+const imgSrc = (src) => {
+  const path = `./img/${src}`;
+  const modules = import.meta.globEager("./img/*.svg");
+  return modules[path].default;
+};
 </script>
