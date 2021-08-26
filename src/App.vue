@@ -15,9 +15,12 @@
       @draw="draw"
       @updateRemark="updateRemark"
     />
-    <ResultSection :sectionData="resultData" />
+    <ResultSection
+      :sectionData="resultData"
+      :titleContent="titleData.key.value"
+    />
   </section>
-  <div class="flex mb-4 justify-center">
+  <div class="flex pb-8 justify-center">
     <Button
       content="產生範例"
       custom="bg-blue-400 hover:bg-blue-500 mr-16"

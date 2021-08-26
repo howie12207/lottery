@@ -13,11 +13,22 @@
         custom="bg-green-400 hover:bg-green-500"
         @clickHandle="copy"
       />
-      <Button
-        content="下載"
-        custom="bg-green-400 hover:bg-green-500"
-        @clickHandle="download"
-      />
+      <a
+        class="
+          bg-green-400
+          hover:bg-green-500
+          text-center text-white
+          py-2
+          px-10
+          rounded-3xl
+          shadow-sm
+          transition
+        "
+        ref="downloadEl"
+        :href="`data:text/plain;charset=utf-8,${sectionData.key.value}`"
+        :download="titleContent"
+        >下載</a
+      >
     </div>
   </div>
 </template>
@@ -33,6 +44,10 @@ const props = defineProps({
     type: Object,
     default: () => ({}),
   },
+  titleContent: {
+    type: String,
+    default: "",
+  },
 });
 
 const copy = async () => {
@@ -40,9 +55,5 @@ const copy = async () => {
     .writeText(props.sectionData.key.value)
     .then(() => alert("複製成功"))
     .catch(() => alert("複製失敗"));
-};
-
-const download = () => {
-  console.log(4);
 };
 </script>
