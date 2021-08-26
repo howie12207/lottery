@@ -24,7 +24,6 @@
           shadow-sm
           transition
         "
-        ref="downloadEl"
         :href="`data:text/plain;charset=utf-8,${sectionData.key.value}`"
         :download="titleContent"
         >下載</a

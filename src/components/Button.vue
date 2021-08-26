@@ -13,8 +13,6 @@
 <script setup>
 import { defineProps, ref } from "vue";
 
-emits: ["clickHandle"];
-
 defineProps({
   content: {
     type: String,
