@@ -7,7 +7,7 @@
       v-model:content="sectionData.key.value"
       readonly
     />
-    <div class="flex justify-evenly mt-4">
+    <div class="flex justify-evenly mt-2">
       <Button
         content="複製"
         custom="bg-green-400 hover:bg-green-500"

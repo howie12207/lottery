@@ -26,7 +26,7 @@
         </button>
       </template>
     </Card>
-    <div class="flex justify-evenly mt-4">
+    <div class="flex justify-evenly mt-2">
       <Button
         content="試抽"
         custom="bg-green-400 hover:bg-green-500"

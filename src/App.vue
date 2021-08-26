@@ -1,9 +1,20 @@
 <template>
-  <h1 class="bg-green-500 text-center p-4 text-4xl font-black text-white mb-4">
+  <h1 class="bg-green-500 text-center p-4 text-4xl font-black text-white">
     簡易抽獎工具
   </h1>
-
-  <section class="md:grid grid-cols-2 grid-rows-2 gap-4 p-8">
+  <div class="flex mt-2 md:mr-8 justify-evenly md:justify-end">
+    <Button
+      content="產生範例"
+      custom="bg-blue-400 hover:bg-blue-500 mr-8"
+      @clickHandle="sample"
+    />
+    <Button
+      content="全部清除"
+      custom="bg-red-400 hover:bg-red-500"
+      @clickHandle="clear"
+    />
+  </div>
+  <section class="md:grid grid-cols-2 gap-4 p-6">
     <TitleSection :sectionData="titleData" class="mb-4 md:mb-0" />
     <PrizeSection :sectionData="prizeData" class="mb-4 md:mb-0" />
     <PeopleSection
@@ -22,18 +33,6 @@
       :titleContent="titleData.key.value"
     />
   </section>
-  <div class="flex pb-8 justify-center">
-    <Button
-      content="產生範例"
-      custom="bg-blue-400 hover:bg-blue-500 mr-16"
-      @clickHandle="sample"
-    />
-    <Button
-      content="全部清除"
-      custom="bg-red-400 hover:bg-red-500"
-      @clickHandle="clear"
-    />
-  </div>
 </template>
 
 <script setup>
@@ -48,7 +47,7 @@ import Button from "./components/Button.vue";
 const titleData = {
   icon: "message.svg",
   title: "標題",
-  placeholder: "",
+  placeholder: "在此輸入抽獎標題",
   key: ref(""),
 };
 const prizeData = {
@@ -63,7 +62,7 @@ const peopleData = {
   key: "list",
   icon: "list.svg",
   title: "待抽獎人名單",
-  placeholder: "",
+  placeholder: "說明：一行一筆資料，可按下【產生名單編號】",
   key: ref(""),
   remark: ref(""),
 };
