@@ -3,10 +3,11 @@
     簡易抽獎工具
   </h1>
 
-  <section class="grid grid-cols-2 grid-rows-2 gap-4 p-8">
-    <TitleSection :sectionData="titleData" />
-    <PrizeSection :sectionData="prizeData" />
+  <section class="md:grid grid-cols-2 grid-rows-2 gap-4 p-8">
+    <TitleSection :sectionData="titleData" class="mb-4 md:mb-0" />
+    <PrizeSection :sectionData="prizeData" class="mb-4 md:mb-0" />
     <PeopleSection
+      class="mb-4 md:mb-0"
       :sectionData="peopleData"
       :titleContent="titleData.key.value"
       :prizeContent="prizeData.key.value"
@@ -16,6 +17,7 @@
       @updateRemark="updateRemark"
     />
     <ResultSection
+      class="mb-4 md:mb-0"
       :sectionData="resultData"
       :titleContent="titleData.key.value"
     />
