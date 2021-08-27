@@ -23,9 +23,11 @@
       :titleContent="titleData.key.value"
       :prizeContent="prizeData.key.value"
       :peopleContent="peopleData.key.value"
+      :countdown="countdown"
       @createPeopleList="createPeopleList"
       @draw="draw"
       @updateRemark="updateRemark"
+      @updateLoading="updateLoading"
     />
     <ResultSection
       class="mb-4 md:mb-0"
@@ -33,6 +35,7 @@
       :titleContent="titleData.key.value"
     />
   </section>
+  <Loading v-if="isLoading" :countdown="countdown" />
 </template>
 
 <script setup>
@@ -43,6 +46,7 @@ import PrizeSection from "./components/PrizeSection.vue";
 import PeopleSection from "./components/PeopleSection.vue";
 import ResultSection from "./components/ResultSection.vue";
 import Button from "./components/Button.vue";
+import Loading from "./components/Loading.vue";
 
 const titleData = {
   icon: "message.svg",
@@ -90,6 +94,10 @@ const updateRemark = ({
   peopleData.remark.value = peopleRemark;
 };
 
+const updateLoading = (status) => {
+  isLoading.value = status;
+};
+
 const draw = (content) => {
   resultData.key.value = content;
 };
@@ -106,4 +114,7 @@ const clear = () => {
   prizeData.remark.value = "";
   peopleData.remark.value = "";
 };
+
+const isLoading = ref(false);
+const countdown = 5;
 </script>

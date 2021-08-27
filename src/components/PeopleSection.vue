@@ -64,9 +64,22 @@ const props = defineProps({
     type: String,
     default: "",
   },
+  isLoading: {
+    type: Boolean,
+    default: false,
+  },
+  countdown: {
+    type: Number,
+    default: 5,
+  },
 });
 
-const emit = defineEmits(["createPeopleList", "draw", "updateRemark"]);
+const emit = defineEmits([
+  "createPeopleList",
+  "draw",
+  "updateRemark",
+  "updateLoading",
+]);
 
 const createPeopleList = () => {
   const input = window.prompt("請輸入抽獎人數", 10);
@@ -87,7 +100,7 @@ const createPeopleList = () => {
 
 const draw = (isTest = true) => {
   if (!verify()) return;
-  const { titleContent, prizeContent, peopleContent } = props;
+  const { titleContent, prizeContent, peopleContent, countdown } = props;
 
   // 將獎項轉成陣列並去除空白
   const prizeToAry = prizeContent?.split("\n")?.filter((item) => item.trim());
@@ -108,7 +121,8 @@ const draw = (isTest = true) => {
     return;
   }
 
-  emit("draw", "抽獎中，請稍後");
+  emit("draw", "");
+  emit("updateLoading", true);
 
   const prizeRemark = `預計抽出${prizeAmt.length}個獎項，共${totalPrizeAmt}個名額`;
   const peopleRemark = `共有${totalList}個人參與`;
@@ -132,7 +146,8 @@ const draw = (isTest = true) => {
   setTimeout(() => {
     emit("draw", result);
     emit("updateRemark", { prizeRemark, peopleRemark });
-  }, 1500);
+    emit("updateLoading", false);
+  }, countdown * 1000);
 };
 
 const verify = () => {
